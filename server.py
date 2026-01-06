@@ -12,8 +12,9 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         if self.path.startswith("/play"):
             self.handle_game_request()
         else:
-            self.path = "index.html"  # Serve the HTML file
-            return http.server.SimpleHTTPRequestHandler.do_GET(self)
+            # self.path = "index.html"  # Serve the HTML file
+            # return http.server.SimpleHTTPRequestHandler.do_GET(self)
+            super().do_GET()
 
     def handle_game_request(self):
         """Handle game logic based on user input."""
