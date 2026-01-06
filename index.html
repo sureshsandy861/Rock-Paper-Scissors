@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+    <script>
+        function playGame(choice) {
+            fetch(`/play?choice=${choice}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("result").innerHTML = `
+                        <h2>You chose: ${data.user_choice}</h2>
+                        <h2>Computer chose: ${data.computer_choice}</h2>
+                        <h1>${data.result}</h1>
+                    `;
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Rock-Paper-Scissors</h1>
+    <button onclick="playGame('rock')">🪨 Rock</button>
+    <button onclick="playGame('paper')">📜 Paper</button>
+    <button onclick="playGame('scissors')">✂️ Scissors</button>
+    <div id="result"></div>
+</body>
+</html>
